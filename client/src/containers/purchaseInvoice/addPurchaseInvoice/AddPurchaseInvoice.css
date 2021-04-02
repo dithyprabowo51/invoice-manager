@@ -1,0 +1,21 @@
+.container-form-add-invoice {
+  width: 900px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 40px rgba(59, 152, 212, 0.15), -1px -1px 40px rgba(59, 152, 212, 0.15);
+  font-size: 12px;
+}
+
+.container-form-add-invoice input, .container-form-add-invoice select {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.507);
+  margin-top: 10px;
+}
+
+.container-form-add-invoice input:focus {
+  outline: none;
+}

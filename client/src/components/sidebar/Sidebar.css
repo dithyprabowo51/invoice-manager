@@ -1,0 +1,29 @@
+.aside {
+  width: 200px;
+  background-color: #499BD2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 50px 20px;
+  color: #EFF5F9;
+  font-size: 14px;
+}
+
+.menu {
+  display: flex;
+  cursor: pointer;
+  margin: 20px 0;
+  justify-content: space-between;
+}
+
+.icon-menu {
+  width: 20px;
+}
+
+.submenu {
+  background-color: #2975A8;
+  margin-left: 25px;
+  padding: 10px;
+  border-radius: 5px;
+}

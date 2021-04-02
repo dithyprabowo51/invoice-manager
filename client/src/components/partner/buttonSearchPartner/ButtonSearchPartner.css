@@ -1,0 +1,18 @@
+.search-partner-input {
+  border: none;
+  height: 35px;
+}
+.search-partner-input:focus {
+  outline: none;
+}
+.container-search-partner {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 350px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 1px 1px 40px rgba(59, 152, 212, 0.15), -1px -1px 40px rgba(59, 152, 212, 0.15);
+  padding: 0 20px;
+}
