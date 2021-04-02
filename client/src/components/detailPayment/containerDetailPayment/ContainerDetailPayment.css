@@ -1,0 +1,7 @@
+.container-detail-payment {
+  width: 900px;
+  padding: 30px 20px;
+  background-color: white;
+  box-shadow: 1px 1px 40px rgba(59, 152, 212, 0.15), -1px -1px 40px rgba(59, 152, 212, 0.15);
+  margin-top: 60px;
+}

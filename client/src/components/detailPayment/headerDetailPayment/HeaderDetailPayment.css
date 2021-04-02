@@ -1,0 +1,7 @@
+.header-detail-payment {
+  width: 950px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 1px 1px 40px rgba(59, 152, 212, 0.15), -1px -1px 40px rgba(59, 152, 212, 0.15);
+}

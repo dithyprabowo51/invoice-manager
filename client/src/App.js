@@ -12,6 +12,11 @@ import AddSalesInvoice from './containers/salesInvoice/addSalesInvoice/AddSalesI
 import DetailInvoice from './containers/detailInvoice/DetailInvoice.js'
 import PurchaseInvoice from './containers/purchaseInvoice/PurchaseInvoice.js'
 import AddPurchaseInvoice from './containers/purchaseInvoice/addPurchaseInvoice/AddPurchaseInvoice.js'
+import ReceivePayment from './containers/payment/receivePayment/ReceivePayment.js'
+import AddReceivePayment from './containers/payment/receivePayment/addRecievePayment/AddReceivePayment.js'
+import DetailPayment from './containers/detailPayment/DetailPayment.js'
+import SendPayment from './containers/payment/sendPayment/SendPayment.js'
+import AddSendPayment from './containers/payment/sendPayment/addSendPayment/AddSendPayment.js'
 
 // Router
 import { Switch, Route } from 'react-router-dom'
@@ -45,6 +50,21 @@ function App() {
             </Route>
             <Route path="/invoice/:id">
               <DetailInvoice />
+            </Route>
+            <Route path="/receive-payment/add">
+              <AddReceivePayment />
+            </Route>
+            <Route path="/send-payment/add">
+              <AddSendPayment />
+            </Route>
+            <Route path="/receive-payment">
+              <ReceivePayment />
+            </Route>
+            <Route path="/send-payment">
+              <SendPayment />
+            </Route>
+            <Route path="/payment/:id">
+              <DetailPayment />
             </Route>
           </Switch>
         </section>

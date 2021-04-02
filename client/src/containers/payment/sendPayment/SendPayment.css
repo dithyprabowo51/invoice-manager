@@ -1,0 +1,19 @@
+.add-send-payment {
+  width: 1000px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 1px 1px 40px rgba(59, 152, 212, 0.15), -1px -1px 40px rgba(59, 152, 212, 0.15);
+  margin-top: 40px;
+  border-radius: 4px;
+}
+
+.add-send-payment input, .add-send-payment select {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.37);
+}
+
+.add-send-payment input:focus, .add-send-payment select:focus {
+  outline: none;
+}
