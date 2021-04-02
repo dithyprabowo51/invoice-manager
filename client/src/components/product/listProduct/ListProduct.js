@@ -1,39 +1,28 @@
 import React from 'react'
-import './ListReceivePayment.css'
-
-// Router
-import { useHistory } from 'react-router-dom'
+import './ListProduct.css'
 
 // Components
-import PaymentId from './columnTitle/PaymentId.js'
-import Client from './columnTitle/Client.js'
-import PaymentStatus from './columnTitle/PaymentStatus.js'
-import PaymentDate from './columnTitle/PaymentDate.js'
-import PaymentAmount from './columnTitle/PaymentAmount.js'
+import ProductName from './columnTitle/ProductName.js'
+import ProductSku from './columnTitle/ProductSku.js'
+import Stock from './columnTitle/Stock.js'
 
-const ListReceivePayment = () => {
-  const history = useHistory()
-  const handleChangePage = value => {
-    history.push(value)
-  }
+const ListProduct = (props) => {
   return (
     <table className="table">
       <thead>
         <tr>
           <th scope="col">
-            <PaymentId />
+            <ProductName />
           </th>
           <th scope="col">
-            <Client />
+            <ProductSku />
           </th>
           <th scope="col">
-            <PaymentStatus />
+            <Stock />
           </th>
-          <th scope="col">
-            <PaymentDate />
-          </th>
-          <th scope="col">
-            <PaymentAmount />
+          <th>
+            <div>Unit</div>
+            <div style={{ width: '5px', height: '30px' }}></div>
           </th>
           <th>
             <div>Action</div>
@@ -47,12 +36,11 @@ const ListReceivePayment = () => {
           <td>Mark</td>
           <td>Otto</td>
           <td>mdo</td>
-          <td>mdo</td>
           <td>
             <div className="dropdown">
               <button className="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><button onClick={() => handleChangePage('/invoicer/payment/2')} className="dropdown-item">View Payment</button></li>
+                <li><button onClick={() => props.setIsShowEditProduct(true)} className="dropdown-item">Edit</button></li>
                 <li><button className="dropdown-item">Delete</button></li>
               </ul>
             </div>
@@ -63,4 +51,4 @@ const ListReceivePayment = () => {
   )
 }
 
-export default ListReceivePayment
+export default ListProduct

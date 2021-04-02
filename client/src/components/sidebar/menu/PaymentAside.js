@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Router
 import { useHistory } from 'react-router-dom'
 
 const PaymentAside = () => {
   const history = useHistory()
+  const [isShowSubmenu, setIsShowSubmenu] = useState(false)
   const handleChangePage = value => {
     history.push(value)
   }
   return (
     <div>
-      <div className="menu">
+      <div onClick={() => setIsShowSubmenu(!isShowSubmenu)} className="menu">
         <div className="d-flex">
           <div className="icon-menu">
             <i className="far fa-credit-card"></i>
@@ -20,13 +21,22 @@ const PaymentAside = () => {
           </div>
         </div>
         <div>
-          <i className="fas fa-angle-down"></i>
+          <i className={isShowSubmenu ? "fas fa-angle-down" : "fas fa-angle-up"}></i>
         </div>
       </div>
-      <div className="submenu">
-        <div onClick={() => handleChangePage('/receive-payment')} className="mb-3">Receive Payment</div>
-        <div onClick={() => handleChangePage('/send-payment')}>Send Payment</div>
-      </div>
+      {
+        isShowSubmenu ?
+          <div className="submenu">
+            <div onClick={() => handleChangePage('/invoicer/receive-payment')} className="mb-3">
+              <button className="text-light" style={{ background: 'transparent', border: 'none' }}>Receive Payment</button>
+            </div>
+            <div onClick={() => handleChangePage('/invoicer/send-payment')}>
+              <button className="text-light" style={{ background: 'transparent', border: 'none' }}>Send Invoice</button>
+            </div>
+          </div>
+          :
+          null
+      }
     </div>
   )
 }

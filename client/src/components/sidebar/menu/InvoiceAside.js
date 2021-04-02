@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Router
 import { useHistory } from 'react-router-dom'
 
 const InvoiceAside = () => {
   const history = useHistory()
+  const [isShowSubmenu, setIsShowSubmenu] = useState(false)
   const handleChangePage = (value) => {
     history.push(value)
   }
   return (
     <div>
-      <div className="menu">
+      <div onClick={() => setIsShowSubmenu(!isShowSubmenu)} className="menu">
         <div className="d-flex">
           <div className="icon-menu">
             <i className="far fa-file-alt"></i>
@@ -20,13 +21,22 @@ const InvoiceAside = () => {
             </div>
         </div>
         <div>
-          <i className="fas fa-angle-down"></i>
+          <i className={isShowSubmenu ? "fas fa-angle-down" : "fas fa-angle-up"}></i>
         </div>
       </div>
-      <div className="submenu">
-        <div onClick={() => handleChangePage('/sales-invoice')} className="mb-3">Sales Invoice</div>
-        <div onClick={() => handleChangePage('/purchase-invoice')}>Purchase Invoice</div>
-      </div>
+      {
+        isShowSubmenu ?
+          <div className="submenu">
+            <div onClick={() => handleChangePage('/invoicer/sales-invoice')} className="mb-3">
+              <button className="text-light" style={{ background: 'transparent', border: 'none' }}>Sales Invoice</button>
+            </div>
+            <div onClick={() => handleChangePage('/invoicer/purchase-invoice')}>
+              <button className="text-light" style={{ background: 'transparent', border: 'none' }}>Purchase Invoice</button>
+            </div>
+          </div>
+          :
+          null
+      }
     </div>
   )
 }

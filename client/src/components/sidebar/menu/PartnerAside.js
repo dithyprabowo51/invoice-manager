@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 const PartnerAside = () => {
   const history = useHistory()
   const handleChangePage = () => {
-    history.push('/partner')
+    history.push('/invoicer/partner')
   }
   return (
     <div>

@@ -20,7 +20,7 @@ const SendPayment = () => {
       <div className="d-flex justify-content-between pe-5" style={{ width: '100%' }}>
         <ButtonSearchSendPayment />
         <div className="me-5">
-          <button onClick={() => handleChangePage('/send-payment/add')} className="btn btn-primary">Create New Payment</button>
+          <button onClick={() => handleChangePage('/invoicer/send-pay/add')} className="btn btn-primary">Create New Payment</button>
         </div>
       </div>
       <div className="pe-5 mt-5">

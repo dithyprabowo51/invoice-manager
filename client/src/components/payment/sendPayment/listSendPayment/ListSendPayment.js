@@ -52,7 +52,7 @@ const ListSendPayment = () => {
             <div className="dropdown">
               <button className="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><button onClick={() => handleChangePage('/payment/2')} className="dropdown-item">View Payment</button></li>
+                <li><button onClick={() => handleChangePage('/invoicer/payment/2')} className="dropdown-item">View Payment</button></li>
                 <li><button className="dropdown-item">Delete</button></li>
               </ul>
             </div>

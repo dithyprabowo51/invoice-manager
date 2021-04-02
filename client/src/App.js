@@ -6,6 +6,7 @@ import Sidebar from './components/sidebar/Sidebar.js'
 import Navbar from './components/navbar/Navbar.js'
 
 // Containers
+import Login from './containers/login/Login.js'
 import Partner from './containers/partner/Partner.js'
 import SalesInvoice from './containers/salesInvoice/SalesInvoice.js'
 import AddSalesInvoice from './containers/salesInvoice/addSalesInvoice/AddSalesInvoice.js'
@@ -17,58 +18,80 @@ import AddReceivePayment from './containers/payment/receivePayment/addRecievePay
 import DetailPayment from './containers/detailPayment/DetailPayment.js'
 import SendPayment from './containers/payment/sendPayment/SendPayment.js'
 import AddSendPayment from './containers/payment/sendPayment/addSendPayment/AddSendPayment.js'
+import Product from './containers/product/Product.js'
 
 // Router
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { GuardProvider, GuardedRoute } from 'react-router-guards';
+
+const requireLogin = (to, from, next) => {
+  if (to.location.pathname !== '/') {
+    if (localStorage.getItem('access_token')) {
+      next()
+    } else {
+      next.redirect('/')
+    }
+  } else {
+    next()
+  }
+};
 
 function App() {
   return (
     <div>
-      <aside>
-        <Sidebar />
-      </aside>
-      <main>
-        <nav>
-          <Navbar />
-        </nav>
-        <section className="pb-5">
-          <Switch>
-            <Route path="/partner">
-              <Partner />
-            </Route>
-            <Route path="/sales-invoice/add">
-              <AddSalesInvoice />
-            </Route>
-            <Route path="/purchase-invoice/add">
-              <AddPurchaseInvoice />
-            </Route>
-            <Route path="/sales-invoice">
-              <SalesInvoice />
-            </Route>
-            <Route path="/purchase-invoice">
-              <PurchaseInvoice />
-            </Route>
-            <Route path="/invoice/:id">
-              <DetailInvoice />
-            </Route>
-            <Route path="/receive-payment/add">
-              <AddReceivePayment />
-            </Route>
-            <Route path="/send-payment/add">
-              <AddSendPayment />
-            </Route>
-            <Route path="/receive-payment">
-              <ReceivePayment />
-            </Route>
-            <Route path="/send-payment">
-              <SendPayment />
-            </Route>
-            <Route path="/payment/:id">
-              <DetailPayment />
-            </Route>
-          </Switch>
-        </section>
-      </main>
+      <Route exact path="/">
+        <Login />
+      </Route>
+      <GuardProvider guards={[requireLogin]}>
+        <GuardedRoute path="/invoicer">
+          <aside>
+            <Sidebar />
+          </aside>
+          <main>
+            <nav>
+              <Navbar />
+            </nav>
+            <section className="pb-5">
+              <GuardedRoute path="/invoicer/partner">
+                <Partner />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/sales-inv/add">
+                <AddSalesInvoice />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/purchase-inv/add">
+                <AddPurchaseInvoice />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/sales-invoice">
+                <SalesInvoice />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/purchase-invoice">
+                <PurchaseInvoice />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/invoice/:id">
+                <DetailInvoice />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/receive-pay/add">
+                <AddReceivePayment />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/send-pay/add">
+                <AddSendPayment />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/receive-payment">
+                <ReceivePayment />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/send-payment">
+                <SendPayment />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/payment/:id">
+                <DetailPayment />
+              </GuardedRoute>
+              <GuardedRoute path="/invoicer/product">
+                <Product />
+              </GuardedRoute>
+            </section>
+          </main>
+        </GuardedRoute>
+      </GuardProvider>
     </div>
   );
 }

@@ -76,7 +76,7 @@ const AddReceivePayment = () => {
             </div>
           </div>
           <div className="text-center mt-5">
-            <button onClick={() => handleChangePage('/receive-payment')} className="btn btn-danger mx-2" type="button">Cancel</button>
+            <button onClick={() => handleChangePage('/invoicer/receive-payment')} className="btn btn-danger mx-2" type="button">Cancel</button>
             <button className="btn btn-primary mx-2" type="submit">Save Payment</button>
           </div>
         </div>

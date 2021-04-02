@@ -18,7 +18,7 @@ const SalesInvoice = () => {
       <div className="d-flex justify-content-between pe-5" style={{ width: '100%' }}>
         <ButtonSearchPurchaseInvoice />
         <div className="me-5">
-          <button onClick={() => handleChangePage('/purchase-invoice/add')} className="btn btn-primary">Create New Invoice</button>
+          <button onClick={() => handleChangePage('/invoicer/purchase-inv/add')} className="btn btn-primary">Create New Invoice</button>
         </div>
       </div>
       <div className="pe-5 mt-5">
