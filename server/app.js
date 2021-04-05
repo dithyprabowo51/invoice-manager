@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/invoicer', { useNewUrlParser: true, useUnifiedTopology: true })
 const errorHandler = require('./middlewares/errorHandler.js')
 const routes = require('./routes')
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
