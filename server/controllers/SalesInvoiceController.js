@@ -1,5 +1,5 @@
 const { ObjectId } = require('bson')
-const { PurchaseInvoice } = require('../models/purchaseInvoice.js')
+const { SalesInvoice } = require('../models/salesInvoice.js')
 
 class PurchaseController {
   static async addInvoice(req, res, next) {
@@ -12,13 +12,13 @@ class PurchaseController {
         let productAmount = Number(product.quantity) * Number(product.price)
         invoice_amount += productAmount
       })
-      const newInvoice = await PurchaseInvoice.create({
+      const newInvoice = await SalesInvoice.create({
         supplier, payment_status, delivery_status, invoice_amount, date, due_date, products,
         user: { email },
         outstanding_amount: invoice_amount
       })
       res.status(201).json({
-        message: 'Added new purchase invoice successfully',
+        message: 'Added new sales invoice successfully',
         data: newInvoice
       })
     } catch (err) {
@@ -32,7 +32,7 @@ class PurchaseController {
       const perPage = 5
       const skipped = (Number(currentPage) - 1) * perPage
       const { email } = req.user
-      const invoices = await PurchaseInvoice.find({ 'user.email': email }).skip(skipped).limit(perPage)
+      const invoices = await SalesInvoice.find({ 'user.email': email }).skip(skipped).limit(perPage)
       res.status(200).json({
         message: 'OK',
         data: invoices
@@ -46,13 +46,13 @@ class PurchaseController {
     try {
       const { _id } = req.params
       const { email } = req.user
-      const invoice = await PurchaseInvoice.findOne({
+      const invoice = await SalesInvoice.findOne({
         _id: ObjectId(_id),
         'user.email': email,
       })
       if (!invoice) throw { status: 404, msg: 'Invoice not found' }
       if (invoice.invoice_amount !== invoice.outstanding_amount) throw { status: 400, msg: `There is a payment in invoice with _id ${invoice._id}` }
-      const invoiceDeleted = await PurchaseInvoice.findOneAndDelete({
+      const invoiceDeleted = await SalesInvoice.findOneAndDelete({
         _id: ObjectId(_id),
         'user.email': email
       })
