@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const schema = new Schema({
-  supplier: {
+  client: {
     type: String,
     required: true
   },
@@ -34,7 +34,7 @@ const schema = new Schema({
     type: [{
       product_name: String,
       product_sku: String,
-      quantity: String,
+      quantity: Number,
       price: Number
     }]
   },

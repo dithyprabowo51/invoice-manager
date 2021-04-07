@@ -34,7 +34,7 @@ const schema = new Schema({
     type: [{
       product_name: String,
       product_sku: String,
-      quantity: String,
+      quantity: Number,
       price: Number
     }]
   },
