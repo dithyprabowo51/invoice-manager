@@ -6,6 +6,7 @@ const purchaseInvoiceRoutes = require('./purchaseInvoiceRoutes.js')
 const salesInvoiceRoutes = require('./salesInvoiceRoutes.js')
 const productRoutes = require('./productRoutes.js')
 const sendPaymentRoutes = require('./sendPaymentRoutes.js')
+const receivePaymentRoutes = require('./receivePaymentRoutes.js')
 
 router.use(authRoutes)
 router.use('/companies', companyRoutes)
@@ -14,5 +15,6 @@ router.use('/purchase-invoices', purchaseInvoiceRoutes)
 router.use('/sales-invoices', salesInvoiceRoutes)
 router.use('/products', productRoutes)
 router.use('/send_payments', sendPaymentRoutes)
+router.use('/receive_payments', receivePaymentRoutes)
 
 module.exports = router
