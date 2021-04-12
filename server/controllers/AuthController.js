@@ -28,11 +28,11 @@ class AuthController {
   static async login(req, res, next) {
     try {
       const { email, password } = req.body
-      if (!email || !password) throw { status: 400, msg: 'empty email or password field' }
+      if (!email || !password) throw { status: 400, msg: 'Email and password field cant be empty !' }
       const user = await User.findOne({ email })
-      if (!user) throw { status: 400, msg: 'invalid email or password' }
+      if (!user) throw { status: 400, msg: 'Invalid email or password' }
       const isValidPassword = checkPassword(password, user.password)
-      if (!isValidPassword) throw { status: 400, msg: 'invalid email or password' }
+      if (!isValidPassword) throw { status: 400, msg: 'Invalid email or password' }
       const access_token = generateToken({
         _id: user._id,
         email: user.email,

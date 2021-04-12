@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import './FormAddPartner.css'
+import './FormEditPartner.css'
 
 // Redux
 import { useDispatch } from 'react-redux'
 import { addPartner } from '../../../../redux/actions/partner/addPartner.js'
 
-const FormAddPartner = (props) => {
+const FormEditPartner = (props) => {
   const dispatch = useDispatch()
 
   const [name, setName] = useState('')
@@ -15,7 +15,7 @@ const FormAddPartner = (props) => {
   const [city, setCity] = useState('')
 
   const handleCancel = () => {
-    props.setIsShowAddPartnerForm(false)
+    props.setIsShowEditPartnerForm(false)
   }
 
   const handleSubmit = (event) => {
@@ -23,12 +23,12 @@ const FormAddPartner = (props) => {
     dispatch(addPartner({
       name, type, phone, city, email
     }))
-    props.setIsShowAddPartnerForm(false)
+    props.setIsShowEditPartnerForm(false)
   }
 
   return (
-    <div className="form-add-partner">
-      <h4 className="text-center">Create New Partner</h4>
+    <div className="form-edit-partner">
+      <h4 className="text-center">Edit Partner</h4>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-3">
           <label className="form-label">Name <sup className="text-danger">*</sup></label>
@@ -94,4 +94,4 @@ const FormAddPartner = (props) => {
   )
 }
 
-export default FormAddPartner
+export default FormEditPartner

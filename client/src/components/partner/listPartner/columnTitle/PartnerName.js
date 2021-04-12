@@ -1,11 +1,17 @@
 import React from 'react'
 
-const PartnerName = () => {
+const PartnerName = (props) => {
+  const handleSubmit = event => {
+    event.preventDefault()
+    props.handleFilterPartners()
+  }
   return (
     <div>
       <div>Name</div>
       <div>
-        <input type="text" />
+        <form onSubmit={handleSubmit}>
+          <input type="text" value={props.name} onChange={event => props.setName(event.target.value)} />
+        </form>
       </div>
     </div>
   )

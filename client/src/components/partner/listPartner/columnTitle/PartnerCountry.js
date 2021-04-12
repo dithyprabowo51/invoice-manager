@@ -1,11 +1,21 @@
 import React from 'react'
 
-const PartnerCountry = () => {
+const PartnerCountry = (props) => {
+  const handleSubmit = event => {
+    event.preventDefault()
+    props.handleFilterPartners()
+  }
   return (
     <div>
-      <div>Country</div>
+      <div>City</div>
       <div>
-        <input type="text" />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={props.city}
+            onChange={event => props.setCity(event.target.value)}
+          />
+        </form>
       </div>
     </div>
   )

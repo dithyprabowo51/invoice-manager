@@ -29,7 +29,24 @@ class PartnerController {
       const { email } = req.user
       const currentPage = req.query.page || 1
       const perPage = 5
-      const partners = await Partner.find({ 'user.email': email }).skip((Number(currentPage) - 1) * perPage).limit(perPage)
+      let filter = {
+        'user.email': email,
+        name: req.query.name,
+        type: req.query.type,
+        _id: req.query._id,
+        emailPartner: req.query.email,
+        phone: req.query.phone,
+        city: req.query.city
+      }
+      for (let key in filter) {
+        if (filter[key] === undefined || filter[key] === '') {
+          delete filter[key]
+        }
+      }
+      const partners = await Partner.find(filter)
+        .skip((Number(currentPage) - 1) * perPage)
+        .limit(perPage)
+        .sort({ _id: -1 })
       res.status(200).json({
         message: 'OK',
         data: partners

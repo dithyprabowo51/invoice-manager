@@ -5,9 +5,11 @@ import './Partner.css'
 import ButtonSearchPartner from '../../components/partner/buttonSearchPartner/ButtonSearchPartner.js'
 import ListPartner from '../../components/partner/listPartner/ListPartner.js'
 import AddPartner from '../../components/partner/addPartner/AddPartner.js'
+import EditPartner from '../../components/partner/editPartner/EditPartner.js'
 
 const Partner = () => {
   const [isShowAddPartnerForm, setIsShowAddPartnerForm] = useState(false)
+  const [isShowEditPartnerForm, setIsShowEditPartnerForm] = useState(false)
   return (
     <div className="partner mt-3">
       <p style={{ fontWeight: '700', fontSize: '23px', color: '#3C5468' }}>All Partners</p>
@@ -18,7 +20,9 @@ const Partner = () => {
         </div>
       </div>
       <div className="list-partner pe-5 mt-5">
-        <ListPartner />
+        <ListPartner
+          setIsShowEditPartnerForm={setIsShowEditPartnerForm}
+        />
       </div>
       {
         isShowAddPartnerForm ?
@@ -27,6 +31,14 @@ const Partner = () => {
               setIsShowAddPartnerForm={(value) => setIsShowAddPartnerForm(value)}
             />
           </div>
+          :
+          null
+      }
+      {
+        isShowEditPartnerForm ?
+          <EditPartner
+            setIsShowEditPartnerForm={setIsShowEditPartnerForm}
+          />
           :
           null
       }

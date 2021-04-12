@@ -53,9 +53,14 @@ function App() {
             null
         }
         <main>
-          <nav>
-            <Navbar />
-          </nav>
+          {
+            location.pathname !== '/' ?
+              <nav>
+                <Navbar />
+              </nav>
+              :
+              null
+          }
           <section className="pb-5">
             <GuardedRoute path="/invoicer/partner">
               <Partner />
