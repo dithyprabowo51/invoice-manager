@@ -13,6 +13,10 @@ import Pagination from './pagination/Pagination.js'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPartners } from '../../../redux/actions/partner/fetchPartners.js'
+import { deletePartner } from '../../../redux/actions/partner/deletePartner.js'
+
+// Sweetalert
+import { MySwal } from '../../../lib/sweetAlert.js'
 
 const ListPartner = (props) => {
   const dispatch = useDispatch()
@@ -39,6 +43,7 @@ const ListPartner = (props) => {
     dispatch(fetchPartners({
       page, name, type, _id, phone, city, email
     }))
+    props.setPage(page)
     // eslint-disable-next-line
   }, [page])
 
@@ -47,6 +52,28 @@ const ListPartner = (props) => {
     dispatch(fetchPartners({
       name, type, _id, phone, city, email
     }))
+  }
+
+  const handleShowEdit = (partner) => {
+    props.setPage(page)
+    props.setDataEdit(partner)
+    props.setIsShowEditPartnerForm(true)
+  }
+
+  const handleDeletePartner = (partner) => {
+    MySwal.fire({
+      title: `Are you sure delete ${partner.name} ?`,
+      showCancelButton: true,
+      confirmButtonText: `Yes`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deletePartner({
+          _id: partner._id,
+          page
+        }))
+        MySwal.fire('Sussessfully', `Deleted ${partner.name}`, 'success')
+      }
+    })
   }
 
   return (
@@ -125,8 +152,8 @@ const ListPartner = (props) => {
                           <div className="dropdown">
                             <button className="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                              <li><button onClick={() => props.setIsShowEditPartnerForm(true)} className="dropdown-item">Edit</button></li>
-                              <li><button className="dropdown-item">Delete</button></li>
+                              <li><button onClick={() => handleShowEdit(partner)} className="dropdown-item">Edit</button></li>
+                              <li><button onClick={() => handleDeletePartner(partner)} className="dropdown-item">Delete</button></li>
                             </ul>
                           </div>
                         </td>

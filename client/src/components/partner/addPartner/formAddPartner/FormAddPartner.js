@@ -5,6 +5,8 @@ import './FormAddPartner.css'
 import { useDispatch } from 'react-redux'
 import { addPartner } from '../../../../redux/actions/partner/addPartner.js'
 
+import { MySwal } from '../../../../lib/sweetAlert.js'
+
 const FormAddPartner = (props) => {
   const dispatch = useDispatch()
 
@@ -20,8 +22,16 @@ const FormAddPartner = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    MySwal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Partner has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
     dispatch(addPartner({
-      name, type, phone, city, email
+      name, type, phone, city, email,
+      page: props.page
     }))
     props.setIsShowAddPartnerForm(false)
   }

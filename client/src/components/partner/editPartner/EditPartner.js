@@ -9,6 +9,8 @@ const EditPartner = (props) => {
     <div className="add-partner">
       <FormEditPartner
         setIsShowEditPartnerForm={props.setIsShowEditPartnerForm}
+        dataEdit={props.dataEdit}
+        page={props.page}
       />
     </div>
   )

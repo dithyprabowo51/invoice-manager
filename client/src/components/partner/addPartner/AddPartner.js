@@ -9,6 +9,7 @@ const AddPartner = (props) => {
     <div className="add-partner">
       <FormAddPartner
         setIsShowAddPartnerForm={props.setIsShowAddPartnerForm}
+        page={props.page}
       />
     </div>
   )

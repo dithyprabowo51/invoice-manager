@@ -10,6 +10,8 @@ import EditPartner from '../../components/partner/editPartner/EditPartner.js'
 const Partner = () => {
   const [isShowAddPartnerForm, setIsShowAddPartnerForm] = useState(false)
   const [isShowEditPartnerForm, setIsShowEditPartnerForm] = useState(false)
+  const [dataEdit, setDataEdit] = useState({})
+  const [page, setPage] = useState(1)
   return (
     <div className="partner mt-3">
       <p style={{ fontWeight: '700', fontSize: '23px', color: '#3C5468' }}>All Partners</p>
@@ -22,6 +24,8 @@ const Partner = () => {
       <div className="list-partner pe-5 mt-5">
         <ListPartner
           setIsShowEditPartnerForm={setIsShowEditPartnerForm}
+          setDataEdit={setDataEdit}
+          setPage={setPage}
         />
       </div>
       {
@@ -29,6 +33,7 @@ const Partner = () => {
           <div>
             <AddPartner
               setIsShowAddPartnerForm={(value) => setIsShowAddPartnerForm(value)}
+              page={page}
             />
           </div>
           :
@@ -38,6 +43,8 @@ const Partner = () => {
         isShowEditPartnerForm ?
           <EditPartner
             setIsShowEditPartnerForm={setIsShowEditPartnerForm}
+            dataEdit={dataEdit}
+            page={page}
           />
           :
           null

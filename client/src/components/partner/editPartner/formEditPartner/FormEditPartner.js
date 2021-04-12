@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './FormEditPartner.css'
 
 // Redux
 import { useDispatch } from 'react-redux'
-import { addPartner } from '../../../../redux/actions/partner/addPartner.js'
+import { editPartner } from '../../../../redux/actions/partner/editPartner.js'
+
+// sweetalert
+import { MySwal } from '../../../../lib/sweetAlert.js'
 
 const FormEditPartner = (props) => {
   const dispatch = useDispatch()
@@ -20,11 +23,29 @@ const FormEditPartner = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(addPartner({
-      name, type, phone, city, email
+    MySwal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Partner has been updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    dispatch(editPartner({
+      name, type, phone, city, email,
+      _id: props.dataEdit._id,
+      page: props.page
     }))
     props.setIsShowEditPartnerForm(false)
   }
+
+  useEffect(() => {
+    setName(props.dataEdit.name)
+    setType(props.dataEdit.type)
+    setEmail(props.dataEdit.emailPartner)
+    setPhone(props.dataEdit.phone)
+    setCity(props.dataEdit.city)
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="form-edit-partner">
