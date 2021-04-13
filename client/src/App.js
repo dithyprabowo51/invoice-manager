@@ -21,7 +21,7 @@ import AddSendPayment from './containers/payment/sendPayment/addSendPayment/AddS
 import Product from './containers/product/Product.js'
 
 // Router
-import { Route, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
 
 const requireLogin = (to, from, next) => {
@@ -32,7 +32,11 @@ const requireLogin = (to, from, next) => {
       next.redirect('/')
     }
   } else {
-    next()
+    if (localStorage.getItem('access_token')) {
+      next.redirect('/invoicer')
+    } else {
+      next()
+    }
   }
 };
 
@@ -40,10 +44,10 @@ function App() {
   const location = useLocation()
   return (
     <div>
-      <Route exact path="/">
-        <Login />
-      </Route>
       <GuardProvider guards={[requireLogin]}>
+        <GuardedRoute exact path="/">
+          <Login />
+        </GuardedRoute>
         {
           location.pathname !== '/' ?
             <aside>

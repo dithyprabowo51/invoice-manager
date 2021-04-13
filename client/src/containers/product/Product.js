@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Product.css'
 
 // Components
@@ -6,10 +6,28 @@ import ButtonSearchProduct from '../../components/product/buttonSearchProduct/Bu
 import ListProduct from '../../components/product/listProduct/ListProduct.js'
 import AddProduct from '../../components/product/addProduct/AddProduct.js'
 
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProducts } from '../../redux/actions/product/fetchProducts.js'
+
 
 const SendPayment = () => {
+  const dispatch = useDispatch()
+
+  const products = useSelector(state => state.product.products)
+  console.log(products)
+
   const [isShowAddProduct, setIsShowAddProduct] = useState(false)
   const [isShowEditProduct, setIsShowEditProduct] = useState(false)
+  const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    dispatch(fetchProducts({
+      page
+    }))
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <div className="mt-3">
       <p style={{ fontWeight: '700', fontSize: '23px', color: '#3C5468' }}>All Products</p>
@@ -22,6 +40,8 @@ const SendPayment = () => {
       <div className="pe-5 mt-5">
         <ListProduct
           setIsShowEditProduct={(value) => setIsShowAddProduct(value)}
+          products={products}
+          setPage={setPage}
         />
       </div>
       {

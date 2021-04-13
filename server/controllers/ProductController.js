@@ -30,10 +30,10 @@ class ProductController {
       let filter = {
         'user.email': email,
         product_name: req.query.product_name,
-        unit: req.query.unit
+        _id: req.query._id
       }
       for (let key in filter) {
-        if (filter[key] === undefined) {
+        if (filter[key] === undefined || filter[key] === '') {
           delete filter[key]
         }
       }
