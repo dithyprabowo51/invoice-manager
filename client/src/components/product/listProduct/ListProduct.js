@@ -9,6 +9,10 @@ import Stock from './columnTitle/Stock.js'
 // Redux
 import { useDispatch } from 'react-redux'
 import { fetchProducts } from '../../../redux/actions/product/fetchProducts.js'
+import { deleteProduct } from '../../../redux/actions/product/deleteProduct.js'
+
+// Swal
+import { MySwal } from '../../../lib/sweetAlert.js'
 
 const ListProduct = (props) => {
   const dispatch = useDispatch()
@@ -20,6 +24,22 @@ const ListProduct = (props) => {
     dispatch(fetchProducts({
       product_name, _id
     }))
+  }
+
+  const handleDeleteProduct = (_id, productName) => {
+    MySwal.fire({
+      title: `Are you sure delete ${productName} ?`,
+      showCancelButton: true,
+      confirmButtonText: `Yes`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteProduct({
+          _id,
+          page: props.page
+        }))
+        MySwal.fire('Sussessfully', `Deleted ${productName}`, 'success')
+      }
+    })
   }
 
   return (
@@ -68,8 +88,7 @@ const ListProduct = (props) => {
                   <div className="dropdown">
                     <button className="btn btn-sm btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Action</button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><button onClick={() => props.setIsShowEditProduct(true)} className="dropdown-item">Edit</button></li>
-                      <li><button className="dropdown-item">Delete</button></li>
+                      <li><button onClick={() => handleDeleteProduct(product._id, product.product_name)} className="dropdown-item">Delete</button></li>
                     </ul>
                   </div>
                 </td>

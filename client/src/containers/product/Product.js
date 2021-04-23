@@ -5,6 +5,7 @@ import './Product.css'
 import ButtonSearchProduct from '../../components/product/buttonSearchProduct/ButtonSearchProduct.js'
 import ListProduct from '../../components/product/listProduct/ListProduct.js'
 import AddProduct from '../../components/product/addProduct/AddProduct.js'
+import Pagination from '../../components/product/pagination/Pagination.js'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,7 +16,7 @@ const SendPayment = () => {
   const dispatch = useDispatch()
 
   const products = useSelector(state => state.product.products)
-  console.log(products)
+  const isLoading = useSelector(state => state.loading.isLoading)
 
   const [isShowAddProduct, setIsShowAddProduct] = useState(false)
   const [isShowEditProduct, setIsShowEditProduct] = useState(false)
@@ -26,7 +27,7 @@ const SendPayment = () => {
       page
     }))
     // eslint-disable-next-line
-  }, [])
+  }, [page])
 
   return (
     <div className="mt-3">
@@ -37,13 +38,28 @@ const SendPayment = () => {
           <button onClick={() => setIsShowAddProduct(true)} className="btn btn-primary">Create New Product</button>
         </div>
       </div>
-      <div className="pe-5 mt-5">
-        <ListProduct
-          setIsShowEditProduct={(value) => setIsShowAddProduct(value)}
-          products={products}
-          setPage={setPage}
-        />
-      </div>
+      {
+        isLoading ?
+          <div className="d-flex justify-content-center my-5">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          :
+          <div className="pe-5 mt-5">
+            <ListProduct
+              setIsShowEditProduct={(value) => setIsShowAddProduct(value)}
+              products={products}
+              setPage={setPage}
+              page={page}
+            />
+          </div>
+      }
+      <Pagination
+        page={page}
+        setPage={setPage}
+        products={products}
+      />
       {
         isShowAddProduct ?
           <div>

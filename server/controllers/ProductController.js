@@ -37,7 +37,7 @@ class ProductController {
           delete filter[key]
         }
       }
-      const products = await Product.find(filter).skip(skipped).limit(perPage)
+      const products = await Product.find(filter).skip(skipped).limit(perPage).sort({ _id: -1 })
       res.status(200).json({
         message: 'OK',
         data: products,
